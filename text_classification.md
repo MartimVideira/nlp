@@ -251,3 +251,49 @@ Where a **binary classifier** can tell us the probability of a the subject being
 We can run a **binary classifier** for each class and have a **threshold**. We accept that the document is from a class if the result from the classifier is greater than the **threshold** therefore we can use a **binary classifier** to get **any of** a set of classes.
 
 
+## Macro vs Micro Averaging
+
+**Macro Averaging**: compute the performance for each class and then average over classes
+
+**Micro Averaging**: collect the decisions from all classes and then compute the performance.(Condense the confusion matrix into a 2 by 2 matrix)
+
+
+## Training Development and Tests Sets
+
+**Training Set** is used to train the model
+
+**Test Model** is used to test the model's performance
+
+**Development or Validation set**: is used to tune hyperparameters and decide which model is best
+
+Sometimes the amount of data available is not enough to be representative, nor is enough to make the split between training and validation sets.
+
+The validation set is used **during training** to figure out the **tuning parameters**(number of hidden layers, hidden layers configurations) it can also be used during training to see how **training is going**, as the data of the validation set is not par of the training set the model will be unbiased twords it and with this results we can see if the model is overfitting the training data and halt the training process.
+
+If the dataset is not big enough... really big... the validation set may not be required.
+
+## Cross Validation
+
+As we've seen before we split the data into **training**, **validation** and **testing**. This means that we don't use all the data for training nor testing nor validating as the splits are fixed.
+
+Thats right. Why are the splits fixed? Why not use all data both for training and testing?
+
+**K-fold cross validation**
+- Split the data into **k folds**
+- Repeat k times: train with k-1 folds and test with the remaining fold
+- Report the average scores on the k iterations.
+
+So with this method we use **all the data for training and for testing**, and with the **k reports** we get we can create a better report, better statistical outcomes of the model we are creating.
+
+**So cross validation helps us evaluate our model**
+
+- Cross validation can be usefull to choose which model to use.
+- Cross validation can also be usefull in **finding the best tunning parameter**
+
+## Causes of Bias
+
+
+- Bias in the training data set. The model can pick these bias and amplify them
+- Bias in human labelers
+- Bias in the resources.(Lexicons, pretrained embeddings)
+- Model architecture
