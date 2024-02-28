@@ -180,3 +180,74 @@ Therefore the chosen class would be the negative class!
 Remember we are calculating $P(c|S)$ because we have the sentence and we want to know the class! And we use the Naive Bayes theorem to use the training data to calculate $ \forall c \in C , P(c|S)$  and we chose the class that maximizes this probability.
 
 
+## Word Occurance vs Word Frequency
+
+>In how many documents of the class does the word occur?
+
+This can even be more important than word frequency
+
+In Binary Naive Bayes we use **binary counts** meaning that we just count the
+occurrance of a word in a document, not its frequency. Therefore its
+$count(w,c)$ will be equal to the number of documents of class $c$ where the
+word $w$ appears.
+
+## Dealing with negation
+
+Looking at the sentences:
+- I like this movie.
+- I *did not* like this movie.
+
+Despite meaning the complete opposite in respect to tokens these two sentences are almost the same.
+
+In sentiment analysis we have the problem of **dealing with negation**. One way of handling negation is to
+change the tokens that occur after a negation: `I did not NOT_like NOT_this  NOT_movie` there fore in terms of tokens
+these two sentences would be rather different improving the capabilities of a model using Naive Bayes
+
+The usage of **bigrams** instead of single words like we've been discussing the Naive Bayes model. It would capture the meaning of **not like**.
+
+## Making Use Of Lexicons
+
+Lexicons can provide external knowledge that can be useful in this task.
+
+**Sentiment lexicons** are lists of words that capture their positive/negative **polarity**. 
+
+With the help sentiment lexicons a **polarity** can be calculated for a given sentence, helping in the text classification task.
+
+Other features can be used in the task of classification, like the detection of certain **keywords** or **expressions** accross the corpus.
+
+features like the metadata of the text if it is of a format other than raw text, Or even syntatic features of the text like the use of punctuation, paragraphs if the words are capitalized or not, the use of slang...
+
+- Distinguishing a boomer from a zoomer.
+
+## Ngrams Come to the Help of Naive Bayes... Maybe
+
+We have seen that the bigger the n-grams the greater context they provide.
+
+And we've also seen that the Naive Bayes assumption that features/words are independent of eachother can hinder us.
+
+So if we instead of single words use n-grams we can use the Naive Bayes Model,
+while maintaining more context than if we used just single words. Like understanding **not like** .
+
+This comes with the cost that the feature set will be very sparse, some n-grams present in the testing data will never have
+appeared in the trainning data... Text is creative...
+
+## Classification with More than 2 Classes
+
+- Sentiment analysis with `Very Negative, Negative, Indiferent, Positive, Very Positive`
+- Topic classification (not a binary decision) where a document can have more than 1 topic
+
+So we enter the topic of **Multi-class** classification tasks:
+- **Multi-label (any-of)** classification where each item can be assigned more than one label.
+- **Multinomial (one-of)** classification, classes are mutually exclusive, only one classification.
+
+So the sentiment analysis would be **multinomial** and the topic classification would be **multi-label**
+
+- **Any of**: one binary classifier for each class, this may assign multiple labels
+- **One of**: use a multiclass classifier like the multinomial **Naive Bayes** model we've seen or a Multinomial Logistic Regression
+    - Or run a **binary classifier** for all the possible classes and choose the one with higher probability.
+
+Where a **binary classifier** can tell us the probability of a the subject being testes belongin to the class.
+
+We can run a **binary classifier** for each class and have a **threshold**. We accept that the document is from a class if the result from the classifier is greater than the **threshold** therefore we can use a **binary classifier** to get **any of** a set of classes.
+
+
