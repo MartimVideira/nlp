@@ -292,7 +292,6 @@ So with this method we use **all the data for training and for testing**, and wi
 
 ## Causes of Bias
 
-
 - Bias in the training data set. The model can pick these bias and amplify them
 - Bias in human labelers
 - Bias in the resources.(Lexicons, pretrained embeddings)
